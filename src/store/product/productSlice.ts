@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ListParams, ListResponse, PaginationParams, ProductInterface } from "../../models";
 
-export interface productState {
-  products: any,
+interface productState {
+  products: ProductInterface [],
  
 }
 
 const initialState: productState = {
-  products: undefined,
+  products: [],
 }
 
 const productSlice  = createSlice({

@@ -1,5 +1,4 @@
 import CommingSoom from "../components/CommingSoon";
-import ProductItem from "../components/ProductItem";
 
 interface HomeProps {}
 

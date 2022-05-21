@@ -1,7 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import {call, put, take, takeLatest} from 'redux-saga/effects'
+import {call, put, takeLatest} from 'redux-saga/effects'
 import productApi from '../../api/productApi'
-import { ListParams, ListResponse, ProductInterface } from '../../models'
+import {ListResponse, ProductInterface } from '../../models'
 import { getAllProduct, getAllProductLoading } from './productSlice'
 
 export function* getProductList() {

@@ -20,31 +20,30 @@
 .popup-content {
   position: absolute;
 
-  top: 140%;
-  right: 0;
+  bottom: 0;
+  right: 140%;
   z-index: 1000;
   background-color: #fff;
   opacity: 0;
 
   border-radius: 4px;
-  padding: 20px;
+  padding: 10px 20px;
 
   transform: scale(0.7);
-  transform-origin: 95% top;
+  transform-origin: bottom right;
   transition: all 0.3s ease;
 }
 
 .popup-content::before {
   content: "";
   position: absolute;
-  top: -20px;
-  right: 9px;
+  bottom: 10px;
+  right: -20px;
   border-width: 10px;
 
   border-color: #fff;
-  border-color: white transparent transparent transparent;
+  border-color: transparent transparent transparent white;
 
-  transform: rotate(180deg);
   transition: all 00s ease;
 }
 
@@ -57,12 +56,18 @@
   white-space: nowrap;
 }
 
+.popup-text-sub {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
 .popup-button {
   display: flex;
   justify-content: center;
   gap: 10px;
 
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .popup-button button {

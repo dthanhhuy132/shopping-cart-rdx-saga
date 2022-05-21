@@ -1,12 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ListParams, ListResponse, PaginationParams, ProductInterface } from "../../models";
+import { createSlice } from "@reduxjs/toolkit";
+import { ProductInterface } from "../../models";
 
 interface productState {
   products: ProductInterface [],
  
 }
-
-// Chóa Quàng
 
 const initialState: productState = {
   products: [],

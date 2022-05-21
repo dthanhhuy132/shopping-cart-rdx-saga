@@ -56,11 +56,15 @@ const cartSlice = createSlice({
 
       state.cart.splice(findIndex,1)
     },
+
+    resetCart: (state, action) => {
+      state.cart = []
+    }
   }
 
 })
 
-export const {addProduct, descreaseProduct, increaseProduct, deleteProduce} = cartSlice.actions
+export const {addProduct, descreaseProduct, increaseProduct, deleteProduce, resetCart} = cartSlice.actions
 
 const cartReducer = cartSlice.reducer;
 export default cartReducer;

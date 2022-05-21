@@ -1,4 +1,3 @@
-import {ListResponse, ListParams, ProductInterface } from "../models";
 import axiosClient from "./axiosClient"
 
 const productApi = {

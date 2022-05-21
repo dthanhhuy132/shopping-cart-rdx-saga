@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../store/hooks";
 
 const headerMenu = ["home", "products", "reviews"];
 
 interface HeaderProps {}
 export default function Header(props: HeaderProps) {
-  const [activeItem, setActiveItem] = useState(999);
+  const [activeItem, setActiveItem] = useState(1);
+  const navigate = useNavigate();
   const location = useLocation();
 
   const cart = useAppSelector((state) => state.Cart.cart);
@@ -41,7 +42,12 @@ export default function Header(props: HeaderProps) {
         </div>
 
         <div className="col col-4 d-flex align-items-center justify-content-center">
-          <div className="">Shopping cart</div>
+          <div
+            className="font-bold text-[1.5rem] text-blue-600 cursor-pointer"
+            onClick={() => navigate("/products")}
+          >
+            ~ Huy o(*^＠^*)o ✅
+          </div>
         </div>
 
         <div className="col col-4 d-flex align-items-center justify-content-end relative">

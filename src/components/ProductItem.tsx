@@ -72,7 +72,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
         <div className="flex justify-between items-center pr-1 mt-3">
           <span className="font-bold">
             $
-            <span>
+            <span className="inline-block w-[10px]">
               {isCheckOut && product
                 ? (product?.price * quantity).toLocaleString("en-US")
                 : product?.price}
@@ -121,7 +121,8 @@ const ProductItem: React.FC<ProductItemProps> = ({
             {isCheckOut && (
               <PopUp
                 isShowPopup={isShowPopup}
-                text="Are you sure to delete Product:"
+                subText={product?.productName}
+                text="Are you sure to delete the product:"
                 handleClickOk={() => confirmDeleteProduct(product?.productId)}
                 handleClickCancel={() => setIsShowPopup(false)}
               />

@@ -1,4 +1,3 @@
-import Button from "../Button";
 import "./pop-up.css";
 
 interface PopupProps {
@@ -21,7 +20,7 @@ const PopUp: React.FC<PopupProps> = ({
       <div className="popup-background" onClick={handleClickCancel}></div>
       <div className="popup-content">
         <h5 className="popup-text">{text}</h5>
-        <p className="popup-text-sub">{subText}</p>
+        <p className="popup-text-sub">"{subText}"</p>
         <div className="popup-button">
           <button className="btn btn-danger " onClick={handleClickOk}>
             Sure

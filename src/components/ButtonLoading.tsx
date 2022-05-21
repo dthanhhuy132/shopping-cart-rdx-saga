@@ -1,25 +1,28 @@
 import { useEffect } from "react";
 
-interface ButtonLoading {
+interface ButtonLoadingInterface {
   isLoading: boolean;
   setLoading: () => void;
   handleClick: () => void;
-  style?: string;
+  styleProp?: string;
   textContent?: string;
   boxModel?: string;
+  disabledProps?: boolean;
 }
 
-const ButtonLoading: React.FC<ButtonLoading> = ({
+const ButtonLoading: React.FC<ButtonLoadingInterface> = ({
   isLoading = false,
   setLoading,
   handleClick,
-  style = "",
+  styleProp = "",
   textContent = "Add to card",
   boxModel,
+  disabledProps = false,
 }) => {
   useEffect(() => {
     const timeId = setTimeout(setLoading, 1300);
     return () => clearTimeout(timeId);
+    // eslint-disable-next-line
   }, [isLoading]);
 
   return (
@@ -27,7 +30,9 @@ const ButtonLoading: React.FC<ButtonLoading> = ({
       <button
         className={`px-3 py-2 bg-[#3b82f6] rounded-md text-white hover:bg-blue-700 ${
           isLoading && "pointer-events-none"
-        } ${style}`}
+        } ${styleProp} ${
+          disabledProps && "pointer-events-none cursor-not-allowed bg-blue-300"
+        }`}
         onClick={handleClick}
       >
         <i className="fa-solid fa-cart-shopping mr-2"></i>

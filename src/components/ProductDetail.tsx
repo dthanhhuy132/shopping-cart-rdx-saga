@@ -5,24 +5,24 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import ButtonLoading from "./ButtonLoading";
 import { ToastContainer, toast } from "react-toastify";
 
-interface ProductDetailInterface {
+interface ProductProps {
   productId: string;
 }
 
-const ProductDetail: React.FC<ProductDetailInterface> = ({ productId }) => {
+const ProductDetailComponent: React.FC<ProductProps> = ({ productId }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const products = useAppSelector((state) => state.Product.products);
 
   const dispatch = useAppDispatch();
 
-  const getProductDetail: ProductInterface = products?.filter(
+  const productDetail: ProductInterface = products?.filter(
     (item: ProductInterface, index: number) => item.productId === productId
   )[0];
 
   // Create new cartData
   const cartData = {
-    getProductDetail,
+    productDetail,
     quantity,
   };
 
@@ -39,7 +39,6 @@ const ProductDetail: React.FC<ProductDetailInterface> = ({ productId }) => {
     setQuantity(1);
 
     return () => clearTimeout(timeId);
-    // eslint-disable-next-line
   }, [productId]);
 
   return (
@@ -47,16 +46,16 @@ const ProductDetail: React.FC<ProductDetailInterface> = ({ productId }) => {
       <div className="px-4">
         <div>
           <h1 className="font-bold text-[1.5rem]">
-            {getProductDetail?.productName}
+            {productDetail?.productName}
           </h1>
-          <p>{getProductDetail?.description}</p>
+          <p>{productDetail?.description}</p>
         </div>
 
         <div className="flex mt-4 mb-4 items-center">
           <span className="font-bold text-[1.6rem]">
             $
             <span className="inline-block w-[100px]">
-              {(getProductDetail?.price * quantity).toFixed(1)}
+              {(productDetail?.price * quantity).toFixed(1)}
             </span>
           </span>
 
@@ -95,7 +94,7 @@ const ProductDetail: React.FC<ProductDetailInterface> = ({ productId }) => {
 
       <div className="flex justify-center items-center">
         <img
-          src={getProductDetail?.imageUrl}
+          src={productDetail?.imageUrl}
           alt=""
           className="max-h-[500px] object-cover"
         />
@@ -104,4 +103,4 @@ const ProductDetail: React.FC<ProductDetailInterface> = ({ productId }) => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailComponent;

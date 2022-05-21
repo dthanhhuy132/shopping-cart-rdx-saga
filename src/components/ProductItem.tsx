@@ -109,7 +109,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
           <div className="relative">
             <button
               className={`py-1 ${
-                !isCheckOut ? "" : "bg-red-600 hover:bg-red-400 px-1"
+                isCheckOut && "bg-red-600 hover:bg-red-400 px-1"
               } rounded-md text-white hover:shadow-[0px_0px_10px_rgba(0,0,0,0.7)]`}
               onClick={() => handleClickOnAddDelete(product?.productId)}
             >

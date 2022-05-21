@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import ButtonLoading from "../components/ButtonLoading";
 import ProductItem from "../components/ProductItem";
 import { AddProduct } from "../store/cart/cartSlice";
 import { useAppSelector } from "../store/hooks";
@@ -7,6 +8,7 @@ import { useAppSelector } from "../store/hooks";
 interface CheckoutProps {}
 export default function Checkout(props: CheckoutProps) {
   const [isCheckOut, setIsCheckOut] = useState(false);
+  const [isLoadingCheckOut, setIsLoadingCheckOut] = useState(false);
   const [isShowAnimate, setIsShowAnimate] = useState(true);
   const location = useLocation();
   const cart = useAppSelector((state) => state.Cart.cart);
@@ -25,7 +27,6 @@ export default function Checkout(props: CheckoutProps) {
 
     return () => {
       clearTimeout(timeId);
-      setIsCheckOut(false);
     };
   }, []);
 
@@ -35,7 +36,6 @@ export default function Checkout(props: CheckoutProps) {
         isShowAnimate && "animate__animated animate__bounceInRight"
       } `}
     >
-      {/* <div className=" "></div> */}
       <p className="rounded-md p-2 font-bold text-[1.5rem]">My Cart</p>
 
       <div className="flex mt-3 gap-3 h-[90%] overflow-y-auto">
@@ -84,9 +84,15 @@ export default function Checkout(props: CheckoutProps) {
             </div>
           </div>
           <div className="">
-            <button className="bg-[#3b82f6] text-white block text-center w-full p-2 mt-3 rounded-md">
-              Checkout
-            </button>
+            <ButtonLoading
+              style="w-full m-0 py-3"
+              textContent="Checkout"
+              isLoading={isLoadingCheckOut}
+              setLoading={() => setIsLoadingCheckOut(false)}
+              handleClick={() => setIsLoadingCheckOut(true)}
+              boxModel="mt-3"
+            />
+
             <Link to="/products" className="hover:text-white">
               <button className="text-[#3b82f6] hover:text-white block text-center w-full p-2 mt-3 rounded-md border-2 border-[#3b82f6] hover:bg-[#3b82f6]">
                 Continue shopping

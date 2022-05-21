@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ProductInterface } from "../models";
 import { addProduct } from "../store/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import ButtonLoading from "./ButtonLoading";
 
 interface ProductDetail {
   productId: string;
@@ -23,8 +24,8 @@ const ProductDetail: React.FC<ProductDetail> = ({ productId }) => {
     quantity,
   };
 
-  function handleClickAddToCard(e: any) {
-    e.stopPropagation();
+  function handleClickAddToCard() {
+    setIsAddingProduct(true);
     dispatch(addProduct(cartData));
   }
 
@@ -33,7 +34,7 @@ const ProductDetail: React.FC<ProductDetail> = ({ productId }) => {
   }, [productId]);
 
   return (
-    <div className="w-3/5 bg-white h-full rounded-lg py-2 text-left">
+    <div className="w-3/5 bg-white h-full rounded-lg py-2 text-left i">
       <div className="px-4">
         <div>
           <h1 className="font-bold text-[1.5rem]">
@@ -68,16 +69,11 @@ const ProductDetail: React.FC<ProductDetail> = ({ productId }) => {
             ></i>
           </div>
 
-          <div className="relative">
-            <button
-              className="px-3 py-2 bg-[#3b82f6] rounded-md text-white hover:bg-blue-700"
-              onClick={(e) => handleClickAddToCard(e)}
-            >
-              <i className="fa-solid fa-cart-shopping mr-2"></i>
-              Add to cart
-            </button>
-            <div className="absolute z-10 top-0 left-0 h-full bg-[#ffffff87] transition-all translate-x-full"></div>
-          </div>
+          <ButtonLoading
+            isLoading={isAddingProduct}
+            setLoading={() => setIsAddingProduct(false)}
+            handleClick={handleClickAddToCard}
+          />
         </div>
       </div>
 

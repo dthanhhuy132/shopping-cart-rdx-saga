@@ -14,7 +14,15 @@ export default function Header(props: HeaderProps) {
   const cartQuantity = cart.reduce((acc, cur) => acc + cur.quantity, 0);
 
   useEffect(() => {
-    if (location.pathname.indexOf("checkout") >= 0) setActiveItem(99);
+    if (location.pathname.indexOf("checkout") >= 0) {
+      setActiveItem(99);
+    }
+
+    setActiveItem(
+      headerMenu.findIndex(
+        (x) => x === location.pathname.slice(1, location.pathname.length)
+      )
+    );
   }, [location.pathname]);
 
   return (

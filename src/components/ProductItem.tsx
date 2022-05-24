@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductInterface } from "../models";
 import {
+  AddProduct,
   deleteProduce,
   descreaseProduct,
   increaseProduct,
@@ -12,6 +13,7 @@ interface ProductItemProps {
   product?: ProductInterface;
   handleClickProductItem?: any;
   isCheckOut?: boolean;
+  cartItem?: AddProduct;
   quantityInCart?: number;
 }
 
@@ -19,11 +21,14 @@ const ProductItem: React.FC<ProductItemProps> = ({
   product,
   handleClickProductItem,
   isCheckOut = false,
+  cartItem,
   quantityInCart,
 }) => {
-  const [quantity, setQuantity] = useState(quantityInCart || 1);
+  const [quantity, setQuantity] = useState(1);
   const [isShowPopup, setIsShowPopup] = useState(false);
   const dispatch = useAppDispatch();
+
+  console.log("quantity trong chekcout", quantity);
 
   function handleClickProductItemInside(productId: string | undefined) {
     if (isCheckOut) return;
@@ -50,6 +55,12 @@ const ProductItem: React.FC<ProductItemProps> = ({
     dispatch(deleteProduce(productId));
     setIsShowPopup(false);
   }
+
+  useEffect(() => {
+    if (quantityInCart) {
+      setQuantity(quantityInCart);
+    }
+  }, [cartItem]);
 
   return (
     <div

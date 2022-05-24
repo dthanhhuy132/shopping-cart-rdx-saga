@@ -31,6 +31,8 @@ export default function Checkout(props: CheckoutProps) {
 
   // let timeId: NodeJS.Timeout;
   function handleCheckOut() {
+    console.log("sau khi delete chay vao day");
+
     setIsLoadingCheckOut(true);
     setTimeout(() => {
       toast.info("Checkout successfully");
@@ -63,7 +65,8 @@ export default function Checkout(props: CheckoutProps) {
               <ProductItem
                 key={index}
                 product={cartItem.productDetail}
-                quantityInCart={cartItem.quantity}
+                quantityInCart={cartItem?.quantity}
+                cartItem={cartItem}
                 isCheckOut={isCheckOut}
               />
             ))
